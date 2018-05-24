@@ -1,0 +1,36 @@
+{
+    "classtype": [
+        {
+            "id": 0,
+            "classname": "语文"
+        },
+        {
+            "id": 1,
+            "classname": "数学"
+        },
+        {
+            "id": 2,
+            "classname": "英语"
+        },
+        {
+            "id": 3,
+            "classname": "物理"
+        },
+        {
+            "id": 4,
+            "classname": "化学"
+        },
+        {
+            "id": 5,
+            "classname": "生物"
+        },
+        {
+            "id": 6,
+            "classname": "政治"
+        },
+        {
+            "id": 7,
+            "classname": "地理"
+        }
+    ]
+}
