@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { ArticleAPI } from '@/api'
 
 export default {
   data () {
@@ -35,15 +34,9 @@ export default {
       user: {
         userName: localStorage.getItem('userName'),
         icon: localStorage.getItem('icon'),
-        nickName: localStorage.getItem('nickName'),
+        nickName: localStorage.getItem('nickName')
       }
     }
-  },
-  mounted () {
-    
-  },
-  methods: {
-    
   }
 }
 </script>

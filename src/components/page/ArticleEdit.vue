@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     saveArticle () {
-      
       const params = {
         teacherAccountId: this.article.teacherAccountId,
         id: this.article.id,

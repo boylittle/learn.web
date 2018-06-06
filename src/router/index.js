@@ -39,16 +39,6 @@ export default new Router({
           path: '/systemSetting',
           name: 'systemSetting',
           component: resolve => require(['../components/page/SystemSetting.vue'], resolve)
-        },
-        {
-          path: '/baseCharts',
-          name: 'baseCharts',
-          component: resolve => require(['../components/page/BaseCharts.vue'], resolve)
-        },
-        {
-          path: '/baseForm',
-          name: 'baseForm',
-          component: resolve => require(['../components/page/BaseForm.vue'], resolve)
         }
       ]
     },

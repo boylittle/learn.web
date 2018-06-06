@@ -150,7 +150,7 @@ export default {
     },
     handleCurrentChange (val) {
       console.log(val)
-      this.page.page = val-1
+      this.page.page = val - 1
       this.getData()
     },
     searchByClass (val) {
@@ -162,28 +162,28 @@ export default {
       this.getData()
     },
     filterByType (event) {
-      const type = event.type;
-      switch(type){
+      const type = event.type
+      switch (type) {
         case 0:
-          return "全部";
+          return '全部'
         case 1:
-          return "语文";
+          return '语文'
         case 2:
-          return "数学";
+          return '数学'
         case 3:
-          return "英语";
+          return '英语'
         case 4:
-          return "物理";
+          return '物理'
         case 5:
-          return "化学";
+          return '化学'
         case 6:
-          return "生物";
+          return '生物'
         case 7:
-          return "政治";
+          return '政治'
         case 8:
-          return "地理";
+          return '地理'
         case 9:
-          return "技术";
+          return '技术'
       }
     }
   }
