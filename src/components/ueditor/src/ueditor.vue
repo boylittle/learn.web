@@ -21,7 +21,7 @@ export default {
   },
   mounted () {
     const _this = this
-    this.editor = UE.getEditor('editor', this.config)
+    this.editor = _this.getEditor('editor', this.config)
     this.editor.addListener('ready', function () {
       _this.editor.setContent(_this.defaultMsg)
     })
