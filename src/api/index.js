@@ -15,15 +15,15 @@ const getInstance = axios.create({
 })
 
 const UserAPI = {
-  toLogin: params => postInstance.post('/user/account/toLogin', { ...params }),
-  getAccount: params => getInstance.get('/user/account/getAccount', { params })
+  toLogin: params => postInstance.post('/learn/user/account/toLogin', { ...params }),
+  getAccount: params => getInstance.get('/learn/user/account/getAccount', { params })
 }
 
 const ArticleAPI = {
-  findBySamples: params => postInstance.post('/article/findBySamples', { ...params }),
-  findByPage: params => postInstance.get('/article/findByPage', { params }),
-  save: params => postInstance.post('/article/save', { ...params }),
-  delete: params => postInstance.post('/article/delete', { ...params })
+  findBySamples: params => postInstance.post('/learn/article/findBySamples', { ...params }),
+  findByPage: params => postInstance.get('/learn/article/findByPage', { params }),
+  save: params => postInstance.post('/learn/article/save', { ...params }),
+  delete: params => postInstance.post('/learn/article/delete', { ...params })
 }
 
 export {
