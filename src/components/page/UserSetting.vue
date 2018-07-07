@@ -45,7 +45,7 @@ export default {
       user: {
         userId: localStorage.getItem('userId'),
         userName: localStorage.getItem('userName'),
-        icon: require('../../../static/img/img.jpg'),
+        icon: localStorage.getItem('icon'),
         icon_id: 0,
         nickName: localStorage.getItem('nickName')
       },
@@ -82,9 +82,11 @@ export default {
   },
   methods: {
     changeSelection (id, src) {
+      console.log(src)
       this.user.icon = src
       this.user.icon_id = id
       this.isShow = false
+      console.log(this.user.icon)
     },
     changeShow () {
       this.isShow = !this.isShow
@@ -109,11 +111,12 @@ export default {
       })
     },
     saveUserInfo () {
+      console.log(this.user.icon)
       const params = {
         id: this.user.userId,
         userName: this.user.userName,
         nickName: this.user.nickName,
-        icon: this.user.icon_id
+        icon: this.user.icon
       }
 
       UserAPI.updateAccount(params).then((res) => {
@@ -123,6 +126,7 @@ export default {
           localStorage.userName = res.data.data.userName
           localStorage.password = res.data.data.password
           localStorage.nickName = res.data.data.nickName
+          localStorage.icon = res.data.data.icon
           localStorage.role = res.data.data.role
           localStorage.type = res.data.data.type
           location.reload()

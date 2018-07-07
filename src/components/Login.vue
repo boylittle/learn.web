@@ -51,6 +51,7 @@ export default {
           localStorage.userName = res.data.data.userName
           localStorage.password = res.data.data.password
           localStorage.nickName = res.data.data.nickName
+          localStorage.icon = res.data.data.icon
           localStorage.role = res.data.data.role
           localStorage.type = res.data.data.type
           setTimeout(() => {

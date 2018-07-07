@@ -20,7 +20,7 @@ export default {
     return {
       user: {
         userName: localStorage.getItem('userName'),
-        icon: require('../../../static/img/img.jpg'),
+        icon: localStorage.getItem('icon'),
         nickName: localStorage.getItem('nickName')
       }
     }
