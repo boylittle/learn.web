@@ -97,11 +97,11 @@ export default {
         console.log(res)
         if (res.data.code.code === 2000) {
           console.log(res)
-          if(res.data.data){
+          if (res.data.data) {
             this.user.nickName = res.data.data.nickName
             this.user.userName = res.data.data.userName
           } else {
-            alert('服务忙')  
+            alert('服务忙')
           }
         } else {
           alert(res.data.code.message)
@@ -125,7 +125,7 @@ export default {
           localStorage.nickName = res.data.data.nickName
           localStorage.role = res.data.data.role
           localStorage.type = res.data.data.type
-          location.reload();
+          location.reload()
         } else {
           alert(res.data.code.message)
         }
