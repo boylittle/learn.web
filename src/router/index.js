@@ -45,11 +45,6 @@ export default new Router({
     {
       path: '/login',
       component: resolve => require(['../components/Login.vue'], resolve)
-    },
-    {
-      path: '/ueditor',
-      name: 'ueditor',
-      component: resolve => require(['../components/ueditor/src/ueditor.vue'], resolve)
     }
   ]
 })
