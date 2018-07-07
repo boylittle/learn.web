@@ -21,7 +21,7 @@
 <script>
 import { ArticleAPI } from '@/api'
 
-//引入编辑器
+// 引入编辑器
 import _Quill from 'quill'
 import defaultOptions from '../../../static/UE/options'
 const Quill = window.Quill || _Quill
@@ -55,8 +55,8 @@ export default {
   name: 'quill-editor',
   data () {
     return {
-      _options: {},
-      _content: {},
+      ue_options: {},
+      ue_content: {},
       defaultOptions,
       article: {
         id: localStorage.getItem('aticle_id'),
@@ -93,21 +93,19 @@ export default {
     delete this.quill
   },
   methods: {
-    //初始化编辑器
+    // 初始化编辑器
     initialize () {
       if (this.$el) {
         // Options
-        this._options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options)
+        this.ue_options = Object.assign({}, this.defaultOptions, this.globalOptions, this.options)
 
         // Instance
-        this.quill = new Quill(this.$refs.editor, this._options)
+        this.quill = new Quill(this.$refs.editor, this.ue_options)
         this.quill.enable(false)
 
-        //给编辑器赋初始值
-        console.log(this._content)
-        console.log(this.content)
-        this.content = localStorage.getItem('aticle_content');
-        console.log(localStorage.getItem('aticle_content'));
+        // 给编辑器赋初始值
+        this.content = localStorage.getItem('aticle_content')
+        console.log(localStorage.getItem('aticle_content'))
         if (this.value || this.content) {
           this.quill.pasteHTML(this.value || this.content)
         }
@@ -132,8 +130,8 @@ export default {
           const quill = this.quill
           const text = this.quill.getText()
           if (html === '<p><br></p>') html = ''
-          this._content = html
-          this.$emit('input', this._content)
+          this.ue_content = html
+          this.$emit('input', this.ue_content)
           this.$emit('change', { html, text, quill })
         })
 
@@ -146,7 +144,7 @@ export default {
         teacherAccountId: this.article.teacherAccountId,
         id: this.article.id,
         title: this.article.title,
-        content: this._content,
+        content: this.ue_content,
         type: this.article.type
       }
 
@@ -163,8 +161,8 @@ export default {
     // Watch content change
     content (newVal, oldVal) {
       if (this.quill) {
-        if (newVal && newVal !== this._content) {
-          this._content = newVal
+        if (newVal && newVal !== this.ue_content) {
+          this.ue_content = newVal
           this.quill.pasteHTML(newVal)
         } else if (!newVal) {
           this.quill.setText('')
@@ -174,8 +172,8 @@ export default {
     // Watch content change
     value (newVal, oldVal) {
       if (this.quill) {
-        if (newVal && newVal !== this._content) {
-          this._content = newVal
+        if (newVal && newVal !== this.ue_content) {
+          this.ue_content = newVal
           this.quill.pasteHTML(newVal)
         } else if (!newVal) {
           this.quill.setText('')
