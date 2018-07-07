@@ -62,7 +62,7 @@ export default {
         id: localStorage.getItem('aticle_id'),
         title: localStorage.getItem('aticle_title'),
         content: localStorage.getItem('aticle_content'),
-        teacherAccountId: localStorage.getItem('teacherAccountId'),
+        userId: localStorage.getItem('userId'),
         type: localStorage.getItem('type')
       }
     }
@@ -141,7 +141,7 @@ export default {
     },
     saveArticle () {
       const params = {
-        teacherAccountId: this.article.teacherAccountId,
+        userId: this.article.userId,
         id: this.article.id,
         title: this.article.title,
         content: this.ue_content,

@@ -25,7 +25,7 @@ export default {
   data: function () {
     return {
       ruleForm: {
-        teacherAccountId: '',
+        userId: '',
         username: '',
         password: ''
       },
@@ -47,7 +47,7 @@ export default {
       }
       UserAPI.toLogin(params).then((res) => {
         if (res.data.code.code === 2000) {
-          localStorage.teacherAccountId = res.data.data.id
+          localStorage.userId = res.data.data.id
           localStorage.userName = res.data.data.userName
           localStorage.password = res.data.data.password
           localStorage.nickName = res.data.data.nickName

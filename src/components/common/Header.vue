@@ -4,7 +4,7 @@
   <div class="user-info">
     <el-dropdown trigger="click" @command="handleCommand">
       <span class="el-dropdown-link">
-      <img class="user-logo" src="../../../static/img/img.jpg">
+      <img class="user-icon" :src="user.icon">
       {{nickName}}
       </span>
       <el-dropdown-menu slot="dropdown">
@@ -18,7 +18,11 @@
 export default {
   data () {
     return {
-      name: '张三'
+      user: {
+        userName: localStorage.getItem('userName'),
+        icon: require('../../../static/img/img.jpg'),
+        nickName: localStorage.getItem('nickName')
+      }
     }
   },
   computed: {
@@ -65,7 +69,7 @@ export default {
   cursor: pointer;
   vertical-align: middle;
  }
- .user-info .user-logo{
+ .user-info .user-icon{
   position: absolute;
   left:0;
   top:15px;

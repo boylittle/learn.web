@@ -16,6 +16,7 @@ const getInstance = axios.create({
 
 const UserAPI = {
   toLogin: params => postInstance.post('/learn/user/account/toLogin', { ...params }),
+  updateAccount: params => postInstance.post('/learn/user/account/update', { ...params }),
   getAccount: params => getInstance.get('/learn/user/account/getAccount', { params })
 }
 

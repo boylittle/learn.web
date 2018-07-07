@@ -66,8 +66,8 @@ export default {
       totalElements: null,
       page: {
         id: null,
-        teacherAccountId: localStorage.getItem('teacherAccountId'),
-        teacherName: null,
+        userId: localStorage.getItem('userId'),
+        userName: null,
         title: null,
         content: null,
         type: null,
