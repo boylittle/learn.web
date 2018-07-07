@@ -23,7 +23,7 @@ import { ArticleAPI } from '@/api'
 
 // 引入编辑器
 import _Quill from 'quill'
-import defaultOptions from '../../../static/UE/options'
+import defaultOptions from '../../../static/js/options'
 const Quill = window.Quill || _Quill
 
 // // pollfill
