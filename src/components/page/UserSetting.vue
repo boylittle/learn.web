@@ -8,12 +8,9 @@
     </div>
     <div class="form-box">
       <el-form ref="form" :model="user" label-width="80px">
-        <el-form-item label="用户名">
-          <el-input v-model="user.userName"></el-input>
-        </el-form-item>
         <el-form-item label="头像">
           <img class="user-icon" :src="user.icon" @click="changeShow()">
-          <el-select v-model="registerForm" v-show="isShow" placeholder="请选择" ref="select" style="margin-left:50px;width:90px">
+          <el-select v-show="isShow" placeholder="请选择" ref="select" style="margin-left:50px;width:90px">
             <el-option
               v-for="avatar in avatars"
               :key="avatar.id"
@@ -26,11 +23,35 @@
         <el-form-item label="昵称">
           <el-input v-model="user.nickName"></el-input>
         </el-form-item>
+        <el-form-item label="账号">
+          <el-input v-model="user.userName"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-button type="danger" @click="dialogState">修改</el-button>
+        </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="saveUserInfo">提交</el-button>
+          <el-button type="success" @click="saveUserInfo">保存</el-button>
           <el-button>取消</el-button>
         </el-form-item>
       </el-form>
+      <el-dialog
+        title="修改密码"
+        :visible.sync="dialogVisible"
+        width="10%"
+        :before-close="handleClose">
+        <el-form ref="form" :model="password" label-width="80px">
+        <el-form-item label="旧密码">
+          <el-input type="password" v-model="password.oldpassword" id="oldpassword"></el-input>
+        </el-form-item>
+        <el-form-item label="新密码">
+          <el-input type="password" v-model="password.newpassword" id="oldpassword"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="success" @click="savePassWord">确 定</el-button>
+          <el-button type="danger" @click="dialogState">取消</el-button>
+        </el-form-item>
+      </el-form>
+      </el-dialog>
     </div>
 </div>
 </template>
@@ -42,12 +63,17 @@ export default {
   data () {
     return {
       isShow: false,
+      dialogVisible: false,
       user: {
         userId: localStorage.getItem('userId'),
         userName: localStorage.getItem('userName'),
         icon: localStorage.getItem('icon'),
         icon_id: 0,
         nickName: localStorage.getItem('nickName')
+      },
+      password: {
+        oldpassword: '',
+        newpassword: ''
       },
       avatars: [
         {
@@ -110,6 +136,18 @@ export default {
         }
       })
     },
+    dialogState () {
+      this.clearpassword()
+      this.dialogVisible = !this.dialogVisible
+    },
+    handleClose (done) {
+      this.clearpassword()
+      done()
+    },
+    clearpassword () {
+      this.password.oldpassword = ''
+      this.password.newpassword = ''
+    },
     saveUserInfo () {
       console.log(this.user.icon)
       const params = {
@@ -130,6 +168,36 @@ export default {
           localStorage.role = res.data.data.role
           localStorage.type = res.data.data.type
           location.reload()
+        } else {
+          alert(res.data.code.message)
+        }
+      })
+    },
+    savePassWord () {
+      console.log(this.password.newpassword)
+      console.log(this.password.oldpassword)
+      console.log(localStorage.password)
+      if (this.password.oldpassword !== localStorage.password) {
+        alert('原密码填写有误！')
+        return
+      }
+      const params = {
+        id: this.user.userId,
+        password: this.password.newpassword
+      }
+
+      UserAPI.updateAccount(params).then((res) => {
+        if (res.data.code.code === 2000) {
+          console.log(res.data)
+          localStorage.userId = res.data.data.id
+          localStorage.userName = res.data.data.userName
+          localStorage.password = res.data.data.password
+          localStorage.nickName = res.data.data.nickName
+          localStorage.icon = res.data.data.icon
+          localStorage.role = res.data.data.role
+          localStorage.type = res.data.data.type
+          this.dialogState()
+          alert('修改密码成功！')
         } else {
           alert(res.data.code.message)
         }

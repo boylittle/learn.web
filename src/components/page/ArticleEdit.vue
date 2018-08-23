@@ -140,6 +140,7 @@ export default {
       }
     },
     saveArticle () {
+      console.log(this.article.userId)
       const params = {
         userId: this.article.userId,
         id: this.article.id,

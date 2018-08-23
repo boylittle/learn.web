@@ -1,38 +1,13 @@
 <template>
-    <div>
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-d-arrow-right"></i> 自述</el-breadcrumb-item>
-            </el-breadcrumb>
-        </div>
-        <div class="ms-doc">
-            <h3>README.md</h3>
-            <article>
-                <h1>manage-system</h1>
-                <p>基于Vue + Element UI 的后台管理系统</p>
-                <h2>前言</h2>
-                <p>该后台为练习使用，功能尚不完善，后面会抽时间慢慢完善的。
-                    如果有想要加功能的同学，可在博客上留言，看到就回复，谢谢。</p>
-                <p>个人博客地址：http://blog.csdn.net/u012888052
-                   谢谢大家的支持!
-                </p>
-                <h2>作者</h2>
-                <p>Happy王子乐</p>
-                <h2>联系方式</h2>
-                <p>QQ：820155406</p>
-                <br>
-            </article>
-        </div>
-
-    </div>
+    <div id="app"><model-obj src="static/model.obj"></model-obj></div>
 </template>
 
+<script src="vue.js"></script>
+<script src="vue-3d-model.min.js"></script>
 <script>
-export default {
-  data: function () {
-    return {}
-  }
-}
+    new Vue({
+        el: '#app'
+    })
 </script>
 
 <style scoped>

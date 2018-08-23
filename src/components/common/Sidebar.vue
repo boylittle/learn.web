@@ -54,6 +54,17 @@ export default {
               title: '系统设置'
             }
           ]
+        },
+        {
+          icon: 'el-icon-star-on',
+          index: 'explore',
+          title: '个人探索',
+          subs: [
+            {
+              index: '3dModel',
+              title: '3D模型'
+            }
+          ]
         }
       ]
     }
