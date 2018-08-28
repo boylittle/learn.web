@@ -77,27 +77,27 @@ export default {
       },
       avatars: [
         {
-          src: require('../../../static/img/img.jpg'),
+          src: require('../../../static/img/icon/img.jpg'),
           id: '0'
         },
         {
-          src: require('../../../static/img/img2.jpg'),
+          src: require('../../../static/img/icon/img2.jpg'),
           id: '1'
         },
         {
-          src: require('../../../static/img/img3.jpg'),
+          src: require('../../../static/img/icon/img3.jpg'),
           id: '2'
         },
         {
-          src: require('../../../static/img/img4.jpg'),
+          src: require('../../../static/img/icon/img4.jpg'),
           id: '3'
         },
         {
-          src: require('../../../static/img/img5.jpg'),
+          src: require('../../../static/img/icon/img5.jpg'),
           id: '4'
         },
         {
-          src: require('../../../static/img/img6.jpg'),
+          src: require('../../../static/img/icon/img6.jpg'),
           id: '5'
         }
       ]

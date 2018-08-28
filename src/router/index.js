@@ -39,6 +39,11 @@ export default new Router({
           path: '/systemSetting',
           name: 'systemSetting',
           component: resolve => require(['../components/page/SystemSetting.vue'], resolve)
+        },
+        {
+          path: '/bgManager',
+          name: 'bgManager',
+          component: resolve => require(['../components/page/bgManager.vue'], resolve)
         }
       ]
     },

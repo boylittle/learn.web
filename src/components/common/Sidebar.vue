@@ -61,8 +61,8 @@ export default {
           title: '个人探索',
           subs: [
             {
-              index: '3dModel',
-              title: '3D模型'
+              index: 'bgManager',
+              title: '背景图片管理'
             }
           ]
         }
