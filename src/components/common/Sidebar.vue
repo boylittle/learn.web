@@ -63,6 +63,10 @@ export default {
             {
               index: 'bgManager',
               title: '背景图片管理'
+            },
+            {
+              index: 'transition',
+              title: '背景图片过渡'
             }
           ]
         }
