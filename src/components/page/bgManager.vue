@@ -14,25 +14,25 @@
 export default {
   data: function () {
     return {
-        albumpic_big:"../../../static/img/background/bg3.jpg",
-        vague: 5,
-        bgList: [
-            "../../../static/img/background/bg1.jpg",
-            "../../../static/img/background/bg2.jpg",
-            "../../../static/img/background/bg3.jpg"
-        ]
+      albumpic_big: '../../../static/img/background/bg3.jpg',
+      vague: 5,
+      bgList: [
+        '../../../static/img/background/bg1.jpg',
+        '../../../static/img/background/bg2.jpg',
+        '../../../static/img/background/bg3.jpg'
+      ]
     }
   },
   methods: {
     rotatePicture () {
-        this.albumpic_big = this.bgList[Math.floor(Math.random()*this.bgList.length)];
+      this.albumpic_big = this.bgList[Math.floor(Math.random() * this.bgList.length)]
     },
     reduceVague () {
-        this.vague = this.vague - 1
+      this.vague = this.vague - 1
     },
     addVague () {
-        console.log(this.value7)
-        this.vague = this.vague + 1
+      console.log(this.value7)
+      this.vague = this.vague + 1
     }
   }
 }
