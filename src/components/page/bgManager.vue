@@ -39,15 +39,15 @@ export default {
 </script>
 
 <style>
-    #playPage{
-        width: 100%;
-        height: 90%;
-        position: relative;
-    }
-    #playPage.blur{
-        position: absolute;
-        top: 10%;
-        left: 0;
-        background-size:cover;
-    }
+  #playPage{
+    width: 100%;
+    height: 90%;
+    position: relative;
+  }
+  #playPage.blur{
+    position: absolute;
+    top: 10%;
+    left: 0;
+    background-size:cover;
+  }
 </style>
