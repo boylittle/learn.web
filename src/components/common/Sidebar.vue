@@ -61,7 +61,7 @@ export default {
           title: '个人探索',
           subs: [
             {
-              index: 'bgManager',
+              index: 'photoManager',
               title: '背景图片管理'
             },
             {

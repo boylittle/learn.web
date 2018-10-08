@@ -41,9 +41,9 @@ export default new Router({
           component: resolve => require(['../components/page/SystemSetting.vue'], resolve)
         },
         {
-          path: '/bgManager',
-          name: 'bgManager',
-          component: resolve => require(['../components/page/BgManager.vue'], resolve)
+          path: '/photoManager',
+          name: 'photoManager',
+          component: resolve => require(['../components/page/PhotoManager.vue'], resolve)
         },
         {
           path: '/transition',
