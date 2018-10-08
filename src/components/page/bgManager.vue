@@ -2,8 +2,8 @@
     <div>
         <div id="buttonPage">
             <el-button type="primary" @click="rotatePicture()" round>图片切换</el-button>
-            <el-button type="primary" @click="reduceVague()" round>图片模糊减轻</el-button>
-            <el-button type="primary" @click="addVague()" round>图片模糊加重</el-button>
+            <el-button type="primary" @click="reduceVague()" round>模糊减轻</el-button>
+            <el-button type="primary" @click="addVague()" round>模糊加重</el-button>
         </div>
         <div id="playPage" class="blur" v-bind:style="{backgroundImage: 'url(' + albumpic_big + ')', filter: 'blur(' + vague + 'px)'}">
         </div>
