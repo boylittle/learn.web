@@ -8,6 +8,7 @@
     </div>
     <div class="handle-box">
       <el-select v-model="select_cate" placeholder="筛选科目" @change="searchByClass" class="handle-select mr10">
+        <el-option key="0" label="全部" value="0"></el-option>
         <el-option key="1" label="语文" value="1"></el-option>
         <el-option key="2" label="数学" value="2"></el-option>
         <el-option key="3" label="英语" value="3"></el-option>
@@ -22,21 +23,21 @@
       <el-button @click="creatArticle">发布文章</el-button>
     </div>
     <el-table :data="this.tableData" border style="width: 100%" ref="multipleTable">
-      <el-table-column prop="title" label="标题" width="200">
+      <el-table-column prop="title" label="标题">
       </el-table-column>
-      <el-table-column prop="type" :formatter="filterByType" label="所属科目">
+      <el-table-column prop="type" :formatter="filterByType" label="所属科目" width="100">
       </el-table-column>
-      <el-table-column prop="lookNumber" label="浏览数" width="80">
+      <el-table-column prop="lookNumber" label="浏览数" width="100">
       </el-table-column>
-      <el-table-column prop="likeNumber" label="点赞数" width="80">
+      <el-table-column prop="likeNumber" label="点赞数" width="100">
       </el-table-column>
-      <el-table-column prop="commentNumber" label="评论数" width="80">
+      <el-table-column prop="commentNumber" label="评论数" width="100">
       </el-table-column>
-      <el-table-column prop="createTime" label="创建日期" sortable>
+      <el-table-column prop="createTime" label="创建日期" sortable width="180">
       </el-table-column>
-      <el-table-column prop="updateTime" label="更新日期" sortable>
+      <el-table-column prop="updateTime" label="更新日期" sortable width="180">
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-button size="small"
             @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -105,6 +106,8 @@ export default {
       localStorage.aticle_id = this.tableData[index].id
       localStorage.aticle_title = this.tableData[index].title
       localStorage.aticle_content = this.tableData[index].content
+      localStorage.aticle_type = this.tableData[index].type
+      localStorage.aticle_tag = this.tableData[index].tag
       this.$router.push({name: 'articleEdit'})
     },
     handleDelete (index, row) {
@@ -146,6 +149,8 @@ export default {
       localStorage.removeItem('aticle_id')
       localStorage.removeItem('aticle_title')
       localStorage.removeItem('aticle_content')
+      localStorage.removeItem('aticle_type')
+      localStorage.removeItem('aticle_tag')
       this.$router.push({name: 'articleEdit'})
     },
     handleCurrentChange (val) {
@@ -154,7 +159,11 @@ export default {
       this.getData()
     },
     searchByClass (val) {
-      this.page.type = val
+      if (val > 0) {
+        this.page.type = val
+      } else {
+        this.page.type = null
+      }
       this.getData()
     },
     searchByTitle (val) {

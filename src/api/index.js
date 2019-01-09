@@ -27,7 +27,12 @@ const ArticleAPI = {
   delete: params => postInstance.post('/learn/article/delete', { ...params })
 }
 
+const ArticleTagAPI = {
+  findAll: params => getInstance.get('/learn/articleTag/findAll', { params })
+}
+
 export {
   UserAPI,
-  ArticleAPI
+  ArticleAPI,
+  ArticleTagAPI
 }

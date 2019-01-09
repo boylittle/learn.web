@@ -27,7 +27,7 @@
           <el-input v-model="user.userName"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-button type="danger" @click="dialogState">修改</el-button>
+          <el-button type="danger" @click="dialogState">修改密码</el-button>
         </el-form-item>
         <el-form-item>
           <el-button type="success" @click="saveUserInfo">保存</el-button>

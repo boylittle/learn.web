@@ -6,50 +6,39 @@
           <el-breadcrumb-item>编辑文章</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="title">
-        <div class="title-left">
-            <span>标题</span>
-            <el-input v-model="article.title"></el-input>
-        </div>
+    <div class="handle-box">
+      <el-select v-model="article.type" placeholder="选择科目" >
+        <el-option
+          v-for="item in typeData"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-input v-model="article.title" placeholder="填写标题" class="handle-input mr10"></el-input>
+      <el-button @click="saveArticle">保存文章</el-button>
+      <div style="margin-top: 20px">
+        <el-checkbox-group v-model="tagResult" size="small">
+          <el-checkbox v-for="tag in tagData"
+            :label="tag.id"
+            :key="tag.id"
+            :value="tag.id"
+            >{{tag.name}}</el-checkbox>
+        </el-checkbox-group>
+      </div>
     </div>
     <slot name="toolbar"></slot>
     <div ref="editor"></div>
-    <button @click="saveArticle()">保存</button>
   </div>
 </template>
 
 <script>
-import { ArticleAPI } from '@/api'
+import { ArticleAPI, ArticleTagAPI } from '@/api'
 
 // 引入编辑器
 import _Quill from 'quill'
 import defaultOptions from '../../../static/js/options'
 const Quill = window.Quill || _Quill
-
-// // pollfill
-// if (typeof Object.assign !== 'function') {
-//   Object.defineProperty(Object, 'assign', {
-//     value (target, varArgs) {
-//       if (target == null) {
-//         throw new TypeError('Cannot convert undefined or null to object')
-//       }
-//       const to = Object(target)
-//       for (let index = 1; index < arguments.length; index++) {
-//         const nextSource = arguments[index]
-//         if (nextSource != null) {
-//           for (const nextKey in nextSource) {
-//             if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-//               to[nextKey] = nextSource[nextKey]
-//             }
-//           }
-//         }
-//       }
-//       return to
-//     },
-//     writable: true,
-//     configurable: true
-//   })
-// }
 
 export default {
   name: 'quill-editor',
@@ -63,8 +52,40 @@ export default {
         title: localStorage.getItem('aticle_title'),
         content: localStorage.getItem('aticle_content'),
         userId: localStorage.getItem('userId'),
-        type: localStorage.getItem('type')
-      }
+        type: localStorage.getItem('aticle_type'),
+        tag: localStorage.getItem('aticle_tag')
+      },
+      tagData: [],
+      tagResult: [],
+      tagResultStr: '',
+      typeData: [{
+        value: '1',
+        label: '语文'
+      }, {
+        value: '2',
+        label: '数学'
+      }, {
+        value: '3',
+        label: '英语'
+      }, {
+        value: '4',
+        label: '物理'
+      }, {
+        value: '5',
+        label: '化学'
+      }, {
+        value: '6',
+        label: '生物'
+      }, {
+        value: '7',
+        label: '政治'
+      }, {
+        value: '8',
+        label: '地理'
+      }, {
+        value: '9',
+        label: '技术'
+      }]
     }
   },
   props: {
@@ -87,6 +108,8 @@ export default {
   },
   mounted () {
     this.initialize()
+    this.getTag()
+    this.createTagResult()
   },
   beforeDestroy () {
     this.quill = null
@@ -105,7 +128,6 @@ export default {
 
         // 给编辑器赋初始值
         this.content = localStorage.getItem('aticle_content')
-        console.log(localStorage.getItem('aticle_content'))
         if (this.value || this.content) {
           this.quill.pasteHTML(this.value || this.content)
         }
@@ -139,14 +161,52 @@ export default {
         this.$emit('ready', this.quill)
       }
     },
+    createTagResult () {
+      var tagStr = this.article.tag
+      var t = tagStr.split(',')
+      t = t.map(Number)
+      for (var i = 0; i < t.length; i++) {
+        if (t[i] > 0) {
+          this.tagResult.push(t[i])
+        }
+      }
+    },
+    getTag () {
+      ArticleTagAPI.findAll().then((res) => {
+        if (res.data.code.code === 2000) {
+          this.tagData = res.data.data
+        } else {
+          alert(res.data.code.message)
+        }
+      })
+    },
     saveArticle () {
       console.log(this.article.userId)
+      console.log(this.article.id)
+      console.log(this.article.title)
+      console.log(this.ue_content)
+      console.log(this.article.type)
+
+      //转换多选数组为字符串
+      console.log(this.tagResult)
+      var tagStr = ''
+      for (var i = 0; i< this.tagResult.length; i++) {
+        if (i == 0) {
+          tagStr = tagStr + this.tagResult[i]
+        } else {
+          tagStr = tagStr + "," + this.tagResult[i]
+        }
+      }
+      this.tagResultStr = tagStr
+      console.log(this.tagResultStr)
+
       const params = {
         userId: this.article.userId,
         id: this.article.id,
         title: this.article.title,
         content: this.ue_content,
-        type: this.article.type
+        type: this.article.type,
+        tag: this.tagResultStr
       }
 
       ArticleAPI.save(params).then((res) => {
@@ -190,3 +250,16 @@ export default {
   }
 }
 </script>
+
+<style>
+.handle-box{
+  margin-bottom: 20px;
+}
+.handle-select{
+  width: 120px;
+}
+.handle-input{
+  width: 300px;
+  display: inline-block;
+}
+</style>
