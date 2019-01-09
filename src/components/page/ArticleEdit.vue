@@ -187,14 +187,13 @@ export default {
       console.log(this.ue_content)
       console.log(this.article.type)
 
-      //转换多选数组为字符串
       console.log(this.tagResult)
       var tagStr = ''
-      for (var i = 0; i< this.tagResult.length; i++) {
-        if (i == 0) {
+      for (var i = 0; i < this.tagResult.length; i++) {
+        if (i === 0) {
           tagStr = tagStr + this.tagResult[i]
         } else {
-          tagStr = tagStr + "," + this.tagResult[i]
+          tagStr = tagStr + ',' + this.tagResult[i]
         }
       }
       this.tagResultStr = tagStr
