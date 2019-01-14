@@ -13,7 +13,8 @@
                 <h2>前言</h2>
                 <p>该后台为练习使用，功能尚不完善，后面会抽时间慢慢完善的。
                     如果有想要加功能的同学，可在博客上留言，看到就回复，谢谢。</p>
-                <p>个人博客地址：http://blog.csdn.net/u012888052
+                <p>对应的前台地址：<a href="http://www.5iwyx.xyz:8888/#/index" target="_blank">http://www.5iwyx.xyz:8888/#/index</a></p>
+                <p>个人博客地址：<a href="http://blog.csdn.net/u012888052" target="_blank">http://blog.csdn.net/u012888052</a>
                    谢谢大家的支持!
                 </p>
                 <h2>作者</h2>
